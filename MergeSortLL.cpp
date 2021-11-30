@@ -73,7 +73,6 @@ Node *mergeSort(Node *head)
     Node* fHead = Merge(newH1,newH2);
     return fHead;
 }
-
 Node *takeinput()
 {
 	int data;
@@ -96,7 +95,6 @@ Node *takeinput()
 	}
 	return head;
 }
-
 void print(Node *head)
 {
 	Node *temp = head;
@@ -107,7 +105,6 @@ void print(Node *head)
 	}
 	cout << endl;
 }
-
 int main()
 {
 	int t;
