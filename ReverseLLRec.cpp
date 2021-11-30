@@ -17,11 +17,9 @@ Node *reverseLinkedListRec(Node *head)
         return head;
     }
     Node *newHead=reverseLinkedListRec(head->next);
-    int i = 1;
-    Node *temp=head;
+    Node *temp=newHead; // head for that call
     while(temp->next!=NULL){
         temp=temp->next;
-        i++;
     }
     temp->next=head;
     head->next=NULL;
@@ -63,13 +61,11 @@ int main()
 {
 	int t;
 	cin >> t;
-
 	while(t--)
 	{
 		Node *head = takeinput();
 		head = reverseLinkedListRec(head);
 		print(head);
 	}
-
 	return 0;
 }
