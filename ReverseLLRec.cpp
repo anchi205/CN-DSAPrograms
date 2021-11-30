@@ -1,5 +1,4 @@
 #include <iostream>
-
 class Node
 {
 public:
@@ -11,7 +10,6 @@ public:
 		this->next = NULL;
 	}
 };
-
 using namespace std;
 Node *reverseLinkedListRec(Node *head)
 {
@@ -29,7 +27,6 @@ Node *reverseLinkedListRec(Node *head)
     head->next=NULL;
     return newHead;
 }
-
 Node *takeinput()
 {
 	int data;
@@ -52,7 +49,6 @@ Node *takeinput()
 	}
 	return head;
 }
-
 void print(Node *head)
 {
 	Node *temp = head;
@@ -63,7 +59,6 @@ void print(Node *head)
 	}
 	cout << endl;
 }
-
 int main()
 {
 	int t;
