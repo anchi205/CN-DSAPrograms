@@ -13,7 +13,7 @@ public:
 using namespace std;
 Node *evenAfterOdd(Node *head)
 {
-	Node *OddH = NULL;
+    Node *OddH = NULL;
     Node *OddT = NULL;
     Node *EvenH = NULL;
     Node *EvenT = NULL;
