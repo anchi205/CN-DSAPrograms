@@ -28,11 +28,11 @@ class Queue {
     /*----------------- Public Functions of Stack -----------------*/
 
     int getSize() {
-		return size;
+	return size;
 	}
 
     bool isEmpty() {
-		return size==0;
+	return size==0;
 	}
 
     void enqueue(int data) {
