@@ -14,20 +14,20 @@ class Node {
 
 // #include "solution.h"
 class Queue {
-	// Define the data members
+// Define the data members
     Node *head;
     Node *tail;
     int size=0;
     public:
     Queue() {
-		head = NULL;
+	head = NULL;
         tail = NULL;
         size = 0;
 	}
 	
-	/*----------------- Public Functions of Stack -----------------*/
+    /*----------------- Public Functions of Stack -----------------*/
 
-	int getSize() {
+    int getSize() {
 		return size;
 	}
 
@@ -36,7 +36,7 @@ class Queue {
 	}
 
     void enqueue(int data) {
-		Node *newNode = new Node(data);
+	Node *newNode = new Node(data);
         if(head==NULL){
             head = newNode;
             tail = newNode;
@@ -56,7 +56,7 @@ class Queue {
         delete temp;
         size--;
         return ans;
-    }
+        }
 
     int front() {
         if(isEmpty()){
