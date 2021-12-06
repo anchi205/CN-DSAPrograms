@@ -18,9 +18,6 @@ public:
 using namespace std;
 //#include "solution.h"
 void deleteAlternateNodes(Node *head) {
-    if(head->next==NULL){
-        
-    }
     Node *temp = head;
     Node *prev = NULL;
     int count=0;
