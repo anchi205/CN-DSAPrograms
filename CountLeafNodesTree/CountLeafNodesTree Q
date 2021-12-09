@@ -1,0 +1,26 @@
+Given a generic tree, count and return the number of leaf nodes present in the given tree.
+
+Input format :
+The first line of input contains data of the nodes of the tree in level order form. 
+The order is: data for root node, number of children to root node, data of each of child nodes and so on and so forth for each node. 
+The data of the nodes of the tree is separated by space.  
+
+Output Format :
+The first and only line of output prints the count of leaf nodes present in the given tree.
+
+Sample Input 1 :
+10 3 20 30 40 2 40 50 0 0 0 0 
+Sample Output 1 :
+4
+
+
+5 0
+1
+
+
+1 1 2 1 3 1 4 1 5 0
+1
+
+
+6 3 4 10 9 2 3 2 1 1 3 12 7 5 0 0 2 11 8 0 0 0 0 0
+7
