@@ -19,6 +19,10 @@ class TreeNode {
 };
 
 // #include "solution.h"
+/*
+Time complexity: O(N) -- N -- no of nodes in the tree
+Space complexity: O(H) -- H -- height/depth of the tree
+*/
 int getLeafNodeCount(TreeNode<int>* root) {
     if(root->children.size()==0){
         return 1;            
