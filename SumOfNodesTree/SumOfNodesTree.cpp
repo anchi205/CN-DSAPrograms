@@ -19,6 +19,10 @@ class TreeNode {
 };
 
 // #include "solution.h"
+/*
+Time complexity: O(N) -- N -- no of nodes in the tree
+Space complexity: O(H) -- H -- height/depth of the tree
+*/
 int sumOfNodes(TreeNode<int>* root) {
     int sum = root->data;
     for(int i=0; i<root->children.size();i++){
