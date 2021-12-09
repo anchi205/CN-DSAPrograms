@@ -19,7 +19,7 @@ int main() {
 	v[1] = 100;
     /* 
     v[3] = 1002;
-	v[4] = 1234;
+    v[4] = 1234;
     --> push_back func checks current size, if space is available or not, should the size be doubled 
 	--> dont use [] for inserting elements -- it won't increase size
 	--> use it for getting or updating an element
