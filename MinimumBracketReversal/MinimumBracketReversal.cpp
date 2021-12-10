@@ -5,7 +5,7 @@ using namespace std;
 // #include "solution.h"
 #include <stack>
 int countBracketReversals(string input) {
-	stack <char> s;
+    stack <char> s;
     int count = 0;
     int i = input.size();
     if(i%2!=0){
