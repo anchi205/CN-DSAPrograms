@@ -20,6 +20,10 @@ class TreeNode {
 };
 
 // #include "solution.h"
+/*
+Time complexity: O(N) -- N -- no of nodes in the tree
+Space complexity: O(H) -- H -- height/depth of the tree
+*/
 template <typename T>
 class secLargest{       
     public:
