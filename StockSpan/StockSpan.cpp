@@ -19,7 +19,7 @@ int *stockSpan(int *price, int size) {
         else { 
             output[i] = i - s.top();           // else the span will be difference between the indices
     	}
-    	s.push(i);                             //push the current index onto stack
+    	s.push(i);                             // push the current index onto stack
  	} 
     return output;
 }
