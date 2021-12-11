@@ -19,31 +19,31 @@ using namespace std;
 // #include "solution.h"
 #include <queue>
 void printLevelWise(BinaryTreeNode<int> *root) {
-	if (root == NULL) {                                              // Corner Case
-		return;
-	}
+    if (root == NULL) {                                              // Corner Case
+	return;
+    }
     
     queue<BinaryTreeNode<int>*> pendingNodes;                        // Create a Queue
     pendingNodes.push(root);                                         // Push the root first
     
     while (pendingNodes.size() != 0) {
         BinaryTreeNode<int> *frontNode = pendingNodes.front();
-		pendingNodes.pop();                                          // Root changes
+        pendingNodes.pop();                                          // Root changes
     
-        cout << frontNode->data <<":";                                   // Root
+        cout << frontNode->data <<":";                               // Root
 		
-        if (frontNode->left) {                                           // Left Child
+        if (frontNode->left) {                                       // Left Child
             cout << "L:" << frontNode->left->data << "," ;
-			pendingNodes.push(frontNode->left);
-		}
+	    pendingNodes.push(frontNode->left);
+	}
         else{
             cout << "L:-1,";
         }
 		
-        if (frontNode->right) {                                          // Right Child
+        if (frontNode->right) {                                      // Right Child
             cout << "R:" << frontNode->right->data;
-		    pendingNodes.push(frontNode->right);
-	    }
+	    pendingNodes.push(frontNode->right);
+	}
         else{
             cout << "R:-1" ;
         }
