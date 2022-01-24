@@ -30,6 +30,12 @@ hif
 Sample Output 3 :
 false
 
+Time complexity: O(N*M)
+Space complexity: O(N*M)
+
+N - no of words in the trie
+M - average word length
+
 
 #include <iostream>
 #include <string>
