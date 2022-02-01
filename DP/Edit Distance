@@ -1,0 +1,282 @@
+// Brute Force -- Recursive
+
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+// #include "solution.h"
+int editDistance(string s1, string s2) {
+	if(s1.size() == 0 || s2.size() == 0) {
+        return max(s1.size(), s2.size());
+    }
+    
+    if(s1[0] == s2[0]) { // If the first character matches
+        return editDistance(s1.substr(1), s2.substr(1));
+    }
+    
+    else {
+        int x = editDistance(s1.substr(1), s2) + 1;           // Insert
+        int y = editDistance(s1, s2.substr(1)) + 1;           // Delete
+        int z = editDistance(s1.substr(1), s2.substr(1)) + 1; // Replace
+        return min(x, min(y, z));
+    }
+}
+
+
+int main() {
+    string s1;
+    string s2;
+
+    cin >> s1;
+    cin >> s2;
+
+    cout << editDistance(s1, s2);
+}
+
+
+
+// Memoization
+int editDistance(string s1, string s2, int** output) {
+    int m = s1.size();
+    int n = s2.size();
+    if(m == 0 || n == 0) {
+        return max(m,n);
+    }
+    
+    // Check if ans already exists
+    if(output[m][n] != -1) {
+        return output[m][n];
+    }
+
+    int ans;
+    if(s1[0] == s2[0]) { // If the first character matches
+        ans = editDistance(s1.substr(1), s2.substr(1), output);
+    }
+    
+    else {
+        int x = editDistance(s1.substr(1), s2, output) + 1;           // Insert
+        int y = editDistance(s1, s2.substr(1), output) + 1;           // Delete
+        int z = editDistance(s1.substr(1), s2.substr(1), output) + 1; // Replace
+        ans = min(x, min(y, z));
+    }
+    
+    // Save your calculation
+    output[m][n] = ans;
+    
+    // Return ans
+    return ans;
+}
+
+int editDistance(string s1, string s2) {
+    int m = s1.size();
+    int n = s2.size();
+    int **output = new int*[m+1];
+    for(int i = 0; i <= m; i++) {
+        output[i] = new int[n+1];
+        for(int j = 0; j <= n; j++) {
+            output[i][j] = -1; // Intializing the 2D array to -1
+        }
+    }
+    return editDistance(s1, s2, output);
+}
+
+// CN 
+#include <iostream>
+using namespace std;
+
+int editDistance_mem(string s, string t, int **output) {
+	int m = s.size();
+	int n = t.size();
+	
+	if(s.size() == 0 || t.size() == 0) {
+		return max(s.size(), t.size());
+	}
+
+	// Check if ans already exists
+	if(output[m][n] != -1) {
+		return output[m][n];
+	}
+
+	int ans;
+	if(s[0] == t[0]) {
+		ans = editDistance_mem(s.substr(1), t.substr(1), output);
+	}
+	else {
+		// Insert
+		int x = editDistance_mem(s.substr(1), t, output) + 1;
+		// Delete
+		int y = editDistance_mem(s, t.substr(1), output) + 1;
+		// Replace
+		int z = editDistance_mem(s.substr(1), t.substr(1), output) + 1;
+
+		ans =  min(x, min(y, z));
+	}
+
+	// Save the ans
+	output[m][n] = ans;
+
+	// Return the ans
+	return ans;
+}
+
+int editDistance_mem(string s, string t) {
+	int m = s.size();
+	int n = t.size();
+	int **ans = new int*[m+1];
+	for(int i = 0; i <= m; i++) {
+		ans[i] = new int[n+1];
+		for(int j = 0; j <= n; j++) {
+			ans[i][j] = -1;
+		}
+	}
+	return editDistance_mem(s, t, ans);
+
+}
+
+int editDistance(string s, string t) {
+	// Base case
+	if(s.size() == 0 || t.size() == 0) {
+		return max(s.size(), t.size());
+	}
+
+	if(s[0] == t[0]) {
+		return editDistance(s.substr(1), t.substr(1));
+	}
+	else {
+		// Insert
+		int x = editDistance(s.substr(1), t) + 1;
+		// Delete
+		int y = editDistance(s, t.substr(1)) + 1;
+		// Replace
+		int z = editDistance(s.substr(1), t.substr(1)) + 1;
+
+		return min(x, min(y, z));
+	}
+}
+
+int main() {
+	string s = "abcdfabcdfabcdfabcdfabcdfabcdfabcdfabcdfabcdfabcdfabcdf";
+	string t = "afdiafdafdafdafd";
+
+	cout << editDistance_mem(s, t) << endl;
+	cout << editDistance(s, t) << endl;
+}
+
+
+// DP
+#include <iostream>
+using namespace std;
+
+int editDistance_DP(string s, string t) {
+	int m = s.size();
+	int n = t.size();
+	int **output = new int*[m+1];
+	for(int i = 0; i <= m; i++) {
+		output[i] = new int[n+1];
+	}
+
+	// Fill 1st row
+	for(int j = 0; j <= n; j++) {
+		output[0][j] = j;
+	}
+
+	// Fill 1st col 
+	for(int i = 1; i <= m; i++) {
+		output[i][0] = i;
+	}
+
+	for(int i = 1; i <= m; i++) {
+		for(int j = 1; j <= n; j++) {
+			if(s[m-i] == t[n-j]) {      // 1st characters match
+				output[i][j] = output[i-1][j-1];
+			}
+			else {
+				int a = output[i-1][j];
+				int b = output[i][j-1];
+				int c = output[i-1][j-1];
+				output[i][j] = min(a, min(b, c)) + 1; // 1st operation done by us
+			}
+		}
+	}
+
+	return output[m][n];
+}
+
+int editDistance_mem(string s, string t, int **output) {
+	int m = s.size();
+	int n = t.size();
+	
+	if(s.size() == 0 || t.size() == 0) {
+		return max(s.size(), t.size());
+	}
+
+	// Check if ans already exists
+	if(output[m][n] != -1) {
+		return output[m][n];
+	}
+
+	int ans;
+	if(s[0] == t[0]) {
+		ans = editDistance_mem(s.substr(1), t.substr(1), output);
+	}
+	else {
+		// Insert
+		int x = editDistance_mem(s.substr(1), t, output) + 1;
+		// Delete
+		int y = editDistance_mem(s, t.substr(1), output) + 1;
+		// Replace
+		int z = editDistance_mem(s.substr(1), t.substr(1), output) + 1;
+
+		ans =  min(x, min(y, z));
+	}
+
+	// Save the ans
+	output[m][n] = ans;
+
+	// Return the ans
+	return ans;
+}
+
+int editDistance_mem(string s, string t) {
+	int m = s.size();
+	int n = t.size();
+	int **ans = new int*[m+1];
+	for(int i = 0; i <= m; i++) {
+		ans[i] = new int[n+1];
+		for(int j = 0; j <= n; j++) {
+			ans[i][j] = -1;
+		}
+	}
+	return editDistance_mem(s, t, ans);
+
+}
+
+int editDistance(string s, string t) {
+	// Base case
+	if(s.size() == 0 || t.size() == 0) {
+		return max(s.size(), t.size());
+	}
+
+	if(s[0] == t[0]) {
+		return editDistance(s.substr(1), t.substr(1));
+	}
+	else {
+		// Insert
+		int x = editDistance(s.substr(1), t) + 1;
+		// Delete
+		int y = editDistance(s, t.substr(1)) + 1;
+		// Replace
+		int z = editDistance(s.substr(1), t.substr(1)) + 1;
+
+		return min(x, min(y, z));
+	}
+}
+
+int main() {
+	string s = "abcdfabcdfabcdfabcdfabcdfabcdfabcdfabcdfabcdfabcdfabcdf";
+	string t = "afdiafdafdafdafd";
+
+	cout << editDistance_DP(s, t) << endl;
+	cout << editDistance_mem(s, t) << endl;
+	cout << editDistance(s, t) << endl;
+}
