@@ -1,6 +1,9 @@
 Print numbers from 1 to n in increasing order recursively.
 ----------------------------------------------------------
 
+TC:  O(n)
+SC:  O(n)
+
 #include<iostream>
 using namespace std;
 
