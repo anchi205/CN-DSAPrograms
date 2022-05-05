@@ -12,6 +12,11 @@ Constraints :
 1 <= |S| <= 10^4
 where |S| represents the length of string
 --------------------------------------------------------------------------------------------
+TC: O(n)
+SC: O(n)
+n - size of input array
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
