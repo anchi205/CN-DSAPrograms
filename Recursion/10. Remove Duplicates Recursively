@@ -1,0 +1,97 @@
+Given a string S, remove consecutive duplicates from it recursively.
+
+Input Format :
+First line of input will contain T number of test cases
+Next T line will contain the string S
+
+Output Format :
+For every test case print the answer in a separate line
+
+Constraints :
+1 <= T <= 10
+1 <= |S| <= 10^4
+where |S| represents the length of string
+--------------------------------------------------------------------------------------------
+#include<bits/stdc++.h>
+using namespace std;
+
+void removeConsecutiveDuplicates(char *input) {
+   if(input[0]=='\0'){
+       return;
+   }
+    if(input[0]==input[1]){
+        int i=1;
+        for(;input[i]!='\0';i++){
+            input[i-1]=input[i];
+        }
+        input[i-1]=input[i];
+        removeConsecutiveDuplicates(input);
+    }
+    removeConsecutiveDuplicates(input+1);
+}
+
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        char input[10000];
+        cin >> input;
+        removeConsecutiveDuplicates(input);
+        cout << input << endl;
+    }
+    return 0;
+}
+
+
+6
+prrtttttt
+bdddfhjkk
+prrrstuwww
+oqqsssuvxx
+mopprrrrs
+ceggghijj
+
+prt
+bdfhjk
+prstuw
+oqsuvx
+moprs
+ceghij
+
+
+7
+hhjlnooo
+dfhjkl
+acddfhjk
+jlmoprr
+abbdfh
+vvxyyyy
+abbdde
+
+hjlno
+dfhjkl
+acdfhjk
+jlmopr
+abdfh
+vxy
+abde
+
+
+8
+ikklnnnopp
+acefffhh
+ffhhhhi
+jlmmnppr
+cdefgiikm
+kmmnpprsu
+xxzbcce
+abdddeg
+
+iklnop
+acefh
+fhi
+jlmnpr
+cdefgikm
+kmnprsu
+xzbce
+abdeg
